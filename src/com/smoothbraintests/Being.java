@@ -28,23 +28,25 @@ public class Being implements Comparable<Being> {
         brain.setInputs(inputs);
         List<Float> thoughts = brain.think();
 
-        if(thoughts.get(0) > 1f && thoughts.get(0) < 100f){
+        if(thoughts.get(0) > 0f && thoughts.get(0) < 1000f){
+            this.fitness += 10;
+        }
+
+        if(thoughts.get(1) > 0.1f && thoughts.get(1) < 1f){
             this.fitness += 1000;
         }
 
-        if(thoughts.get(1) > 100f && thoughts.get(1) < 140f){
+        if(thoughts.get(2) > 0.5f && thoughts.get(2) < 1f){
+            this.fitness += 1000;
+        }
+
+        if(thoughts.get(3) <= -0.0f && thoughts.get(3) > -1000.0f){
             this.fitness += 10;
         }
 
-        if(thoughts.get(2) > 1f && thoughts.get(2) < 500f){
-            this.fitness += 10;
+        if(fitness > 20){
+            int fuck = 100;
         }
-
-        if(thoughts.get(3) < -0.0f && thoughts.get(3) > -1000.0f){
-            this.fitness += 100000;
-        }
-
-
         return this.fitness;
     }
 

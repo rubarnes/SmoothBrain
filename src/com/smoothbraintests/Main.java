@@ -31,23 +31,38 @@ public class Main {
 
         int generation = 0;
         int sumFitness = 0;
+        float sumA;
+        float sumB;
+        float sumC;
+        float sumD;
+
         while(true){
             generation++;
 
             sumFitness = 0;
+            sumA = 0;
+            sumB = 0;
+            sumC = 0;
+            sumD = 0;
 
             for(Being b : currentGeneration){
                 sumFitness += b.think(inputs);
+                List<Float> thoughts = b.getBrain().think();
+                sumA += thoughts.get(0);
+                sumB += thoughts.get(1);
+                sumC += thoughts.get(2);
+                sumD += thoughts.get(3);
             }
 
             Collections.reverse(currentGeneration);
 
+            System.out.println("Generation " + generation + " average outputs: " + (sumA/100) + "|" + (sumB/100) + "|" + (sumC/100) + "|" + (sumD/100));
             System.out.println("Generation " + generation + " total fitness: " + sumFitness + " average fitness: " + (sumFitness / 100) + " best fitness: " + currentGeneration.get(0).getFitness());
 
 
 
             for(int i = 0; i < 10; i++){
-                currentGeneration.get(i).mutate(0.0000001f);
+                currentGeneration.get(i).mutate(0.0001f);
                 currentGeneration.get(i).resetFitness();
                 nextGeneration.add(currentGeneration.get(i));
             }
