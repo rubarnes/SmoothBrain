@@ -10,6 +10,11 @@ public class Layer {
 
     public Layer(int inputCount, int neuronCount){
         this.inputCount = inputCount;
+        this.neurons = new ArrayList<Neuron>();
+
+        for(int i = 0; i < neuronCount; i++){
+            this.neurons.add(new Neuron(this.inputCount));
+        }
     }
 
     public Layer(List<Neuron> neurons, int inputCount){
